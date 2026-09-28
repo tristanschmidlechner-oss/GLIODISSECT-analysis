@@ -35,5 +35,4 @@ The [saved study aggregate reference](../reference/study_loocv_aggregates.json)
 records the study results: Q² median 0.345005146746427; RMSE reduction
 16.0264138360177%; 19/20 controls improved; in-sample R² median
 0.490301917600222; pooled RMSE G 0.0184303259354605 and mean
-0.0219477656932145. These are descriptive conditional prediction results, not
-biological accuracy or superiority.
+0.0219477656932145. These results describe conditional prediction given each subject's G scalar.

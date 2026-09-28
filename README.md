@@ -1,4 +1,4 @@
-# PONE_25851_Analysis
+# GLIODISSECT analysis supplement
 
 Public manuscript-analysis supplement for PONE-D-26-25851, accompanying
 GLIODISSECT v1.0.0. It provides executable analysis code and fully synthetic
@@ -13,7 +13,7 @@ Edit the three installation paths below. Do not add the supplement recursively.
 
 ```matlab
 restoredefaultpath
-supplementDir = '/path/to/PONE_25851_Analysis';
+supplementDir = '/path/to/GLIODISSECT-analysis';
 gliodissectDir = '/path/to/GLIODISSECT';
 spmDir = '/path/to/spm12';
 addpath(supplementDir)
@@ -41,15 +41,14 @@ files, run `example_synthetic_smoothing(anotherNewOutputDir)`. Output files made
 | Convergence/fallback | Per-voxel instrumentation and four-estimator counts | Numerical criterion and fallback encounters, not physiological equilibration |
 | Tests/examples | Synthetic arithmetic, isolation, baseline equivalence, SPM and serialization | Do not establish biological accuracy or clinical calibration |
 | Study aggregates | LOOCV and sensitivity/convergence aggregates | No participant data or new cohort run |
-| Registration, figures, patient comparisons, CV/ICC superiority | Not implemented | No claims of reproduction |
 
 Read [inputs and outputs](docs/INPUTS_OUTPUTS.md), [statistical definitions](docs/METHODS.md),
 [sensitivity and convergence](docs/SENSITIVITY.md), and [validation](docs/VALIDATION.md).
 The package contains an internal `SHA256SUMS` for all other files.
 Study aggregate tables are provided for [threshold sensitivity](reference/study_threshold_aggregates.csv),
 [convergence](reference/study_convergence_aggregates.csv) and [smoothing](reference/study_smoothing_aggregates.csv).
-They include descriptive metrics, including labeled ICC summaries where present;
-the package does not recalculate those group ICC metrics or use them to claim superiority.
+These tables provide cohort-level reference results. Their quantities and
+calculation scope are described in the sensitivity documentation.
 
 ## Private data
 
@@ -60,9 +59,9 @@ provenance, individual tissue masks and native-T1 G masks/scalars. Prepared-arra
 interfaces do not perform or validate registration. Never mix preprocessing streams.
 
 G-adjusted and conventional deviations answer different model-defined questions.
-Prediction metrics, CV, ICC, synthetic tests and numerical convergence do not
-establish biological accuracy or superiority. G is measured from the same
-subject's response data: LOOCV is conditional prediction given that measurement.
+G is measured from the same subject's response data: LOOCV evaluates conditional
+prediction given that measurement. Clinical calibration and biological validity
+require independent evaluation.
 
 ## Credits and licensing
 

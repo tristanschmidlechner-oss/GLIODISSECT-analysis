@@ -48,7 +48,7 @@ Threshold magnitude change uses medians of absolute responses; smoothing uses
 absolute medians, according to their respective summary definitions. Timing remains volumes.
 Threshold summaries include all 14 timing/steady-state/whole-average
 quantities; smoothing summaries include seven timing/normalized-response quantities.
-Regional and group ICC summaries are outside this API. Whole-average responses use
+Whole-average responses use
 the three-segment baseline and unguarded oxygen division; this differs
 from the shared first-step steady-state baseline and its oxygen positivity rule.
 Nonfinite outputs are invalid. The four whole-average maps remain in MAT outputs;
@@ -62,6 +62,12 @@ The driver uses GLIODISSECT v1.0.0 for preprocessing and initial lag estimation.
 
 The study reference tables summarize 40 threshold runs, 20 baseline audits and
 80 smoothing runs. They are aggregate results, not outputs of the synthetic tests.
-Regional atlas-based smoothing, tissue/G sensitivity, registration, regional
-recurrence maps, manuscript figures, patient comparisons and group CV/ICC analyses
-are outside the implemented scope.
+The threshold reference table also contains ICC(2,1) across paired subject
+medians for baseline versus alternative thresholds. This quantifies threshold
+sensitivity; it is not a comparison of steady-state and average maps. These
+cohort ICC summaries are reference values; the executable summary function
+returns per-subject map comparisons.
+
+Regional atlas-based smoothing, tissue/G sensitivity, registration and regional
+recurrence maps require separate workflows. This package provides numerical
+outputs for downstream analysis; manuscript figures are not generated.
