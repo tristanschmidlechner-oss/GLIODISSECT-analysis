@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: "If you use GLIODISSECT, please cite both this software release and the associated methods preprint listed under preferred-citation."
+title: "GLIODISSECT: Temporal response decomposition mapping"
+type: software
+version: 1.0.0
+license: BSD-3-Clause
+repository-code: "https://github.com/tristanschmidlechner-oss/GLIODISSECT"
+authors:
+  - family-names: Schmidlechner
+    given-names: Tristan
+    affiliation: "ASTRAN Lab, Department of Neurosurgery, University Hospital Zurich"
+  - family-names: Stumpo
+    given-names: Vittorio
+    affiliation: "ASTRAN Lab, Department of Neurosurgery, University Hospital Zurich"
+  - family-names: van Niftrik
+    given-names: Bas
+    affiliation: "ASTRAN Lab, Department of Neurosurgery, University Hospital Zurich"
+  - family-names: Fierstra
+    given-names: Jorn
+    affiliation: "ASTRAN Lab, Department of Neurosurgery, University Hospital Zurich"
+preferred-citation:
+  type: article
+  title: "Voxel-wise temporal decomposition of hypoxia-targeted BOLD MRI: method development and proof-of-concept application in glioblastoma"
+  authors:
+    - family-names: Schmidlechner
+      given-names: Tristan
+      orcid: "https://orcid.org/0009-0006-0915-5983"
+    - family-names: Stumpo
+      given-names: Vittorio
+    - family-names: Jehli
+      given-names: Elisabeth
+    - family-names: Zerweck
+      given-names: Leonie
+    - family-names: Bellomo
+      given-names: Jacopo
+    - family-names: Gönel
+      given-names: Meltem
+    - family-names: Müller
+      given-names: Flavia
+    - family-names: Sebök
+      given-names: Martina
+    - family-names: Bink
+      given-names: Andrea
+    - family-names: Kulcsár
+      given-names: Zsolt
+    - family-names: Weller
+      given-names: Michael
+    - family-names: Regli
+      given-names: Luca
+    - family-names: Fierstra
+      given-names: Jorn
+    - family-names: van Niftrik
+      given-names: Christiaan H. B.
+  journal: "medRxiv"
+  date-published: 2026-05-29
+  year: 2026
+  doi: "10.64898/2026.05.27.26354265"
+  url: "https://www.medrxiv.org/content/10.64898/2026.05.27.26354265v1"
+  status: preprint

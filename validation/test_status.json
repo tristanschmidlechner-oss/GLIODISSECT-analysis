@@ -1,0 +1,44 @@
+{
+  "adapter": {
+    "synthetic_ensembles": 12,
+    "released_field_comparisons": 396,
+    "study_core_field_comparisons": 216,
+    "exact_equal": true
+  },
+  "smoothing": [
+    {
+      "spatial_mm": 6,
+      "temporal_volumes": 12,
+      "fields_equal": 33
+    },
+    {
+      "spatial_mm": 6,
+      "temporal_volumes": 8,
+      "fields_equal": 33
+    },
+    {
+      "spatial_mm": 6,
+      "temporal_volumes": 16,
+      "fields_equal": 33
+    },
+    {
+      "spatial_mm": 4,
+      "temporal_volumes": 12,
+      "fields_equal": 33
+    },
+    {
+      "spatial_mm": 8,
+      "temporal_volumes": 12,
+      "fields_equal": 33
+    }
+  ],
+  "test_groups": 5,
+  "passed": true,
+  "matlab": "25.2.0.3150157 (R2025b) Update 4",
+  "spm": "SPM12",
+  "date": "2026-09-28",
+  "data": "fully synthetic",
+  "example_passed": true,
+  "study_driver_synthetic_equivalence": "exact",
+  "cohort_runs_during_build": 0
+}
