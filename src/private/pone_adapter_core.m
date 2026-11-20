@@ -7,8 +7,8 @@ function maps = pone_adapter_core(bBOLD, brainLag, durationRA, ...
     initialGlobalLag, rowScans, shiftedO2, analysisMask)
 %PONE_ADAPTER_CORE Compute voxelwise temporal and response-amplitude maps.
 %
-% This function is cohort-independent. Healthy-control and patient runners
-% construct their masks separately and then call this shared numerical core.
+% This function is cohort-independent. Callers supply filtered data and an
+% explicitly constructed analysis mask through pone_thresholds.
 %
 % Inputs
 %   bBOLD            Filtered four-dimensional BOLD data (X-by-Y-by-Z-by-T)
@@ -16,7 +16,9 @@ function maps = pone_adapter_core(bBOLD, brainLag, durationRA, ...
 %   durationRA       Five protocol phase durations in volumes
 %   initialGlobalLag Initial global lag used for the first DTP estimate
 %   rowScans         Scan indices, normally 1:T
-%   shiftedO2        End-tidal O2 sampled at the BOLD acquisition times
+%   shiftedO2        Scan-length end-tidal O2 vector, or a function handle
+%                    called as shiftedO2(globalDelay) after lag refinement
+%                    to return that vector; globalDelay is in volumes
 %   analysisMask     Logical EPI-space cohort-specific analysis mask
 %
 % Output

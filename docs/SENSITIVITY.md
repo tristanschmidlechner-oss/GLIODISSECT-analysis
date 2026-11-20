@@ -6,7 +6,9 @@ iteration-audit arguments. The adapter combines its public-core validity and
 output conventions with separately named, private instrumented estimators.
 It preserves author notices, indices, fixed windows, fallbacks, convergence
 criteria and iteration bounds. No release file is modified. Baseline equivalence
-is tested against GLIODISSECT v1.0.0 and the study core on synthetic data.
+is tested against GLIODISSECT v1.0.0 on synthetic data, including invalid inputs.
+Supplementary whole-stimulus averages have separate independent arithmetic and
+support tests; see [validation](VALIDATION.md).
 
 The returned `audit` has four records in DTP1,DTR1,DTP2,DTR2 order. Each record's
 uint16 `rows` is voxels × 8 in MATLAB linear order: attempts, completed refinements,

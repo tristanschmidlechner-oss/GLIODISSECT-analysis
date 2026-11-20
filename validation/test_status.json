@@ -2,7 +2,10 @@
   "adapter": {
     "synthetic_ensembles": 12,
     "released_field_comparisons": 396,
-    "study_core_field_comparisons": 216,
+    "oxygen_cases": 3,
+    "oxygen_released_field_comparisons": 99,
+    "whole_average_field_checks": 60,
+    "whole_average_absolute_tolerance": 1E-11,
     "exact_equal": true
   },
   "smoothing": [
@@ -36,9 +39,10 @@
   "passed": true,
   "matlab": "25.2.0.3150157 (R2025b) Update 4",
   "spm": "SPM12",
-  "date": "2026-09-28",
-  "data": "fully synthetic",
   "example_passed": true,
-  "study_driver_synthetic_equivalence": "exact",
-  "cohort_runs_during_build": 0
+  "released_software_suite_passed": true,
+  "date": "2026-11-04",
+  "data": "fully synthetic",
+  "gliodissect_commit": "72fe3a4b511388f233dbd79b9afda456b17f3882",
+  "spm_revision": "SPM12 (7771)"
 }

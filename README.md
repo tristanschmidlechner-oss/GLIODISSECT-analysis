@@ -39,12 +39,14 @@ files, run `example_synthetic_smoothing(anotherNewOutputDir)`. Output files made
 | Threshold sensitivity | 10/90, 5/95, 20/80; instrumented estimators and native-map summaries | Prepared filtered arrays; no registration or cohort figures |
 | Smoothing sensitivity | 4/6/8-mm SPM smoothing; 8/12/16-volume temporal spans; user-data driver | Fixed study acquisition; supplied masks and recorded oxygen/events; regional atlas and tissue/G sensitivity analyses outside scope |
 | Convergence/fallback | Per-voxel instrumentation and four-estimator counts | Numerical criterion and fallback encounters, not physiological equilibration |
-| Tests/examples | Synthetic arithmetic, isolation, baseline equivalence, SPM and serialization | Do not establish biological accuracy or clinical calibration |
+| Tests/examples | Independent arithmetic, isolation, released GLIODISSECT equivalence, whole-average support, SPM and serialization | Do not establish biological accuracy or clinical calibration |
 | Study aggregates | LOOCV and sensitivity/convergence aggregates | No participant data or new cohort run |
 
 Read [inputs and outputs](docs/INPUTS_OUTPUTS.md), [statistical definitions](docs/METHODS.md),
 [sensitivity and convergence](docs/SENSITIVITY.md), and [validation](docs/VALIDATION.md).
-The package contains an internal `SHA256SUMS` for all other files.
+The package contains a `SHA256SUMS` file checksum manifest for all other distributed files
+(UTF-8 text with LF line endings). Windows Git checkouts that convert LF to CRLF
+must restore LF before byte-level checksum verification.
 Study aggregate tables are provided for [threshold sensitivity](reference/study_threshold_aggregates.csv),
 [convergence](reference/study_convergence_aggregates.csv) and [smoothing](reference/study_smoothing_aggregates.csv).
 These tables provide cohort-level reference results. Their quantities and
@@ -68,5 +70,8 @@ require independent evaluation.
 Code retains its author notices and the [BSD 3-Clause licence](LICENSE).
 The external software's citation metadata are retained in [GLIODISSECT_CITATION.cff](GLIODISSECT_CITATION.cff);
 they describe GLIODISSECT, not a new authorship claim for this supplement.
+These metadata preserve the GLIODISSECT v1.0.0 citation, including the title,
+authors and version-specific URL of the May 29, 2026 medRxiv v1 preprint.
+They are not the bibliographic record of the revised PLOS ONE submission.
 Threshold instrumentation and analysis adapters are separately named supplement
 implementations. They do not modify the released software or shadow its functions.

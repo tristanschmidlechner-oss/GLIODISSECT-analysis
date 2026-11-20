@@ -10,16 +10,20 @@ function [DTRmap, index90_DTR_map, index10_DTR_map, Meanbaseline2map] = ...
 % DTR quantifies how quickly the BOLD signal returns from plateau back
 % toward the post-step baseline after the stimulus step ends.
 %
-% Key indices:
-%   index90_DTR  = last TR where signal is still >= 90% of plateau amplitude
-%                  --> PLATEAU END (return has not yet started)
-%   index10_DTR  = first TR where signal has returned to within 10% of
-%                  post-step baseline level
-%                  --> RETURN NEARLY COMPLETE
+% Key indices (names retain the default 10/90 thresholds):
+%   Thresholds are MeanBL2 + low/high * (finalmeanstep - MeanBL2).
+%   index10_DTR is the low-threshold return index after bounded refinement,
+%   with endpoint fallbacks when no crossing is found.
+%   index90_DTR uses a backward search from index10_DTR toward index90_DTP.
+%   The high-threshold match uses >= for a step above baseline and <= for
+%   a step below baseline. The stored index is index10_DTR - idx90back,
+%   one sample before the matched sample in the one-based search vector.
+%   If no match is found or the search is skipped, stepEndIdx is used,
+%   then capped at index10_DTR. These are operational timing landmarks.
 %
-% Together with computeDTP outputs, the per-voxel steady-state window is:
-%
-%       steady-state  =  [ index90_DTP  :  index90_DTR ]
+% OxygenDoubleStep_SS uses index90_DTP as the window start and caps the
+% window end at min(index90_DTR, stimulusEnd_per_voxel), with its existing
+% integer conversion, scan bounds and window-validity checks.
 %
 % -------------------------------------------------------------------------
 % INPUTS
@@ -36,8 +40,8 @@ function [DTRmap, index90_DTR_map, index10_DTR_map, Meanbaseline2map] = ...
 %
 % OUTPUTS
 %   DTRmap            DTR duration per voxel  (index10_DTR - index90_DTR, TR)
-%   index90_DTR_map   Plateau-end index per voxel       (TR)
-%   index10_DTR_map   Return-complete index per voxel   (TR)
+%   index90_DTR_map   Stored high-threshold return landmark per voxel (TR)
+%   index10_DTR_map   Refined low-threshold return landmark per voxel (TR)
 %   Meanbaseline2map  Mean BOLD during post-step baseline per voxel
 %
 % -------------------------------------------------------------------------
@@ -99,8 +103,9 @@ for ix = 1:MtxX
             try
                 % --------------------------------------------------------
                 % STEP 1: Initial DTR-10% index
-                %   Find first TR in post-step baseline where signal has
-                %   returned to within 10% of the post-step baseline level
+                %   Find the first sample on the baseline side of the low
+                %   threshold, measured relative to the step-to-baseline
+                %   amplitude difference (default fraction 0.10).
                 % --------------------------------------------------------
                 BL2data = fData(Startbaseline2:Endbaseline2);
                 MeanBL2 = mean(BL2data);
@@ -148,8 +153,9 @@ for ix = 1:MtxX
                 % --------------------------------------------------------
                 % STEP 3: DTR-90% index
                 %   Search backward from DTR-10% all the way to platStart
-                %   (DTP90 index) to find the last TR where the signal was
-                %   still at >= 90% of plateau amplitude.
+                %   (DTP90 index) for the first high-threshold match in that
+                %   reversed vector, using the signal-direction inequality.
+                %   The stored index is one sample before that match.
                 %
                 %   The search extends into the step period - not just the
                 %   post-step baseline - because the signal often starts
@@ -159,8 +165,8 @@ for ix = 1:MtxX
                 %   The cap min(DTR90, stimEnd) is applied in
                 %   OxygenDoubleStep_SS when computing the SS window.
                 %
-                %   Fallback: if no crossing found, DTR90 = stepEndIdx
-                %   (signal never started returning within the step).
+                %   Fallback: if no crossing is found or the search is
+                %   skipped, use stepEndIdx, then cap at DTR10.
                 % --------------------------------------------------------
                 stepEndIdx = find(Rowscans > stepEnd, 1, 'first');
                 if isempty(stepEndIdx)
